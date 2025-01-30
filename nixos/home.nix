@@ -93,7 +93,7 @@
   home.sessionVariables = {
     FZF_BASE = "${pkgs.fzf}/share/fzf";
     #scrPath = "/home/danb127/.local/share/bin";
-    PATH = "${pkgs.lib.makeSearchPath "bin" ["/home/danb127/.local/share/bin"]}";
+   # PATH = "${pkgs.lib.makeSearchPath "bin" ["/home/danb127/.local/share/bin"]}";
 
 
     # EDITOR = "emacs";

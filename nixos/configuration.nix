@@ -95,10 +95,11 @@ services.gnome.gnome-keyring.enable = true;
   services.xserver = {
     enable = true;
     displayManager.sessionPackages = [ pkgs.hyprland ];
-    displayManager.sddm.enable = false;
-    displayManager.gdm.enable = true;
+    displayManager.gdm.enable = false;
     displayManager.defaultSession = "hyprland";
   };
+
+  services.displayManager.sddm.enable = true;
   
   services.flatpak.enable = true;
 
@@ -111,10 +112,20 @@ services.gnome.gnome-keyring.enable = true;
 services.power-profiles-daemon.enable = true;
 
  # Fonts
- fonts.fonts = with pkgs; [
-  nerdfonts
+ fonts.packages = with pkgs; [
   jetbrains-mono
-];
+  noto-fonts
+  noto-fonts-cjk-sans
+  noto-fonts-emoji
+  liberation_ttf
+  fira-code
+  fira-code-symbols
+  mplus-outline-fonts.githubRelease
+  dina-font
+  proggyfonts
+  
+] ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
+
 
 
 
@@ -128,7 +139,7 @@ services.power-profiles-daemon.enable = true;
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  hardware.pulseaudio.enable = false;
+  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -169,23 +180,23 @@ services.power-profiles-daemon.enable = true;
   # $ nix search wget
   environment.systemPackages = with pkgs; [
    
-   # Window Manager Packages
-   pkgs.hyprland # window manager compositor
-  # Wayland Setup
-   pkgs.wayland # compositor environment
+   hyprland # window manager compositor
+  
+   wayland # compositor environment
 
-   # Editor Packages
-   pkgs.neovim 
+   neovim # text editor
 
-   betterlockscreen
+   betterlockscreen # lockscreen
 
-   pkgs.wget
+   wget # download manager
 
-   pkgs.wlroots
+   wlroots # Wayland compositor library 
 
-   pkgs.wayland-utils
+   wayland-utils # Wayland utilities
 
-   pkgs.waybar
+   waybar
+
+   meson # build system
 
    (pkgs.waybar.overrideAttrs (oldAttrs: {
    	mesonFlags = oldAttrs.mesonFlags ++ ["-Dexperimental=true"];
@@ -314,7 +325,13 @@ services.power-profiles-daemon.enable = true;
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.05"; # Did you read the comment?
   
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix = {
+    package = pkgs.nixVersions.stable;
+
+
+    settings.experimental-features = [ "nix-command" "flakes" ];
+
+    };
 
   environment.variables = {
 
