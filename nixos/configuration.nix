@@ -267,7 +267,7 @@ services.power-profiles-daemon.enable = true;
    power-profiles-daemon
 
    # Fonts
-   nerdfonts
+   
    jetbrains-mono
 
    # LaTeX packages
