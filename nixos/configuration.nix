@@ -102,7 +102,6 @@ services.gnome.gnome-keyring.enable = true;
   services.displayManager= {
     sessionPackages = [ pkgs.hyprland ];
     sddm.enable = true;
-    gdm.enable = false;
     defaultSession = "hyprland";
     };
   
