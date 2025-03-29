@@ -179,6 +179,9 @@ services.power-profiles-daemon.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [ pkgs.glibc ];
+
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
