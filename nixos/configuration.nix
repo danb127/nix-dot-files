@@ -312,6 +312,7 @@ services.power-profiles-daemon.enable = true;
     ncurses # terminal handling library
     unzip # unzip utility
     gettext # get text utility
+    automake # tool to generate Makefile.in files
 
   ];
 
