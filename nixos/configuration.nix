@@ -289,7 +289,7 @@ services.power-profiles-daemon.enable = true;
     # Dependencies for AGS v2
     go
     nodejs
-   
+    nmap
     ags
     bun    # Add ags and bun
 
@@ -299,7 +299,19 @@ services.power-profiles-daemon.enable = true;
     # Discord app
     pkgs.discord
 
-
+    # Toolchain dependencies
+    gcc # GNU Compiler Collection
+    gnumake # GNU Make
+    autoconf # Generate configure scripts
+    bison # parser generator
+    flex # Lexical analyzer
+    texinfo
+    help2man
+    gawk
+    libtool # Generic library support
+    ncurses # terminal handling library
+    unzip # unzip utility
+    gettext # get text utility
 
   ];
 
